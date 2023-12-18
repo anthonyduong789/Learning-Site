@@ -20,7 +20,13 @@ const Heading = styled.div`
 const HeadingText = styled.h1`
   color: black;
   text-decoration: none;
-  font-size: 2rem;
+  font-size: 3rem;  
+
+  margin: 1rem 0;
+  @media (max-width: 768px) { 
+    font-size: 2.2rem;
+
+  }
 `;
 
 const InfoIcon = styled.img`
@@ -44,7 +50,7 @@ const TimerContainer = styled.div`
 `;
 
 const Container = styled.div`
-    width: 600px;
+  width: 600px;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -57,81 +63,69 @@ const TimeLeftContainer = styled.div`
 
   text-align: left;
   padding-left: 1rem;
-@media (max-width: 768px) {
+  @media (max-width: 768px) {
     padding-left: 0.5rem;
   }
 `;
 
 const TimeLeftText = styled.h1`
-
   color: black;
   font-family: "Itim", "regular";
   font-weight: 500;
-    font-size: 2.3rem;
+  font-size: 2.7rem;
   @media (max-width: 768px) {
     font-size: 2rem;
   }
 
-
   padding: 0;
-    margin: 0.3rem;
-  
-  
+  margin: 0.3rem;
 `;
 
 const PauseContainer = styled.div`
-    width: 100%;
+  width: 100%;
 
-    text-align: center;
-    margin-top: 1.8rem;
+  text-align: center;
+  margin-top: 1.8rem;
 `;
 
 const PauseText = styled.h1`
-    color: black;
-    font-size: 2rem;
-    font-family: "Itim", "regular";
-    font-weight: 500;
-    margin-right: 2rem;
-    @media (max-width: 768px) {
-    
-    }
-
+  color: black;
+  font-size: 2rem;
+  font-family: "Itim", "regular";
+  font-weight: 500;
+  margin-right: 2rem;
+  @media (max-width: 768px) {
+  }
 `;
 
 const ControlBox = styled.div`
-    width: 100%;
-    // background: #ffeaea;
-    height: 100px; 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  width: 100%;
+  // background: #ffeaea;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 2rem;
+  gap: 8rem;
+  @media (max-width: 768px) {
     margin-top: 2rem;
-    gap: 8rem;
-    cursor: pointer;
-    @media (max-width: 768px) {
-        margin-top: 2rem;
-        gap: 3rem;
-
-    }
-
-
+    gap: 3rem;
+  }
 `;
 
-
 const ControlPannel = styled.div`
-  
-    height: 100px;
-
+  height: 100px;
 `;
 
 const ControlPannelPng = styled.img`
-    width: 60px;
-    height: 60px;
-
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
 `;
 
 function GapTimer(props) {
   const [play, setPlay] = useState(false);
+  const [showSetting, setShowSetting] = useState(false);
   const goToInfo = () => {
     console.log("go to info");
   };
@@ -157,33 +151,34 @@ function GapTimer(props) {
           </div>
         </Heading>
         <TimerContainer>
-          <TimeLeftContainer>
-            <TimeLeftText>Time Left:{"00:00:00"}</TimeLeftText>
+          {showSetting ?  (null ):( <> <TimeLeftContainer>
+            <TimeLeftText>Time Left: {props.timeLeft}</TimeLeftText>
           </TimeLeftContainer>
           <TimeLeftContainer>
-            <TimeLeftText>Time Until Next Rest:{}</TimeLeftText>
+            <TimeLeftText>Next Rest:{props.nextRest}</TimeLeftText>
           </TimeLeftContainer>
           <PauseContainer>
-            <PauseText>
-            Pause:{"10"}
-            </PauseText>
-        </PauseContainer>
+            <PauseText>Pause:{props.pause}</PauseText>
+          </PauseContainer></>)}
+        
         </TimerContainer>
         <ControlBox>
-            <ControlPannel>
-                <ControlPannelPng src={redo} alt="redo"/>
-            </ControlPannel>
-            <ControlPannel onClick={()=>setPlay(!play)}>
-                {
-                    play ? <ControlPannelPng src={pauseButton} alt="play"/> : <ControlPannelPng src={playButton} alt="pause"/> 
-                }
-                
-            </ControlPannel>
-            <ControlPannel>
-                <ControlPannelPng src={setting} alt="setting"/>
-            </ControlPannel>
+          <ControlPannel onClick={() => {props.resetTimer();}}
+           >
+            <ControlPannelPng src={redo} alt="redo" />
+          </ControlPannel>
+          <ControlPannel onClick={() => props.toogleTimer()}>
+            {props.isRunning ? (
+              <ControlPannelPng src={pauseButton} alt="play" />
+            ) : (
+              <ControlPannelPng src={playButton} alt="pause" />
+            )}
+          </ControlPannel>
+          <ControlPannel onClick={() => {setShowSetting(!showSetting)}}>
+            <ControlPannelPng src={setting} alt="setting" />
+          </ControlPannel>
         </ControlBox>
-    <GapInfoPage />
+        <GapInfoPage />
       </Container>
     </>
   );
