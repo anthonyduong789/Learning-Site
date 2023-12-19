@@ -11,6 +11,7 @@
   /* flex-direction: column;
   justify-content: center;
   align-items: center; */
+
 }
 /* div h1{
   padding: 0;
@@ -24,3 +25,12 @@
   justify-content: center;
 }
 
+img{
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE/Edge */
+  user-select: none; /* Chrome, Opera and Edge */
+  touch-action: manipulation; /* Prevents the default behavior on touch */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-drag: none; /* Safari */
+}

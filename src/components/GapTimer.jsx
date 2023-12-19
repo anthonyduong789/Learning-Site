@@ -104,22 +104,42 @@ const PauseText = styled.h1`
 `;
 
 const ControlBox = styled.div`
-  width: 100%;
-  // background: #ffeaea;
-  // height: 100px;
+  width: 70%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  // margin-top: 2rem;
-  gap: 4rem;
+  height: 100px;
+  width: 300px;
+  border-radius: 33px;
+  justify-content: space-between;
+  // border: 0.2rem solid black;
+  // align-items: center
+  margin-top: 1rem;
   @media (max-width: 768px) {
     margin-top: 2rem;
-    gap: 3rem;
+    // gap: 3rem;
+    width: 80%;
   }
+  
 `;
 
 const ControlPannel = styled.div`
-  // height: 100px;
+  width: 33%;
+  transition: transform 0.2s, background-color 0.7s; // Smooth transition for the background color
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #E6E6E6;
+  
+  &:active {
+    transform: scale(0.8);
+    background-color: yellow;
+
+  }
+  cursor: pointer;
+  &:hover {
+    background: #d6d0d0;
+    cursor: pointer;
+  }
 `;
 
 const ControlPannelPng = styled.img`
@@ -131,80 +151,88 @@ const ControlPannelPng = styled.img`
 // for the setting part of the code below
 
 const Sliders = styled.input`
--webkit-appearance: none;
-width: 100%;
-height: 40px;
-background: #ddd;
-outline: none;
-opacity: 0.7;
--webkit-transition: 0s;
-// transition: opacity 0.2s;
-cursor: pointer;
-margin-bottom: 0.1rem;
-
-/* Thumb styles */
-/* Thumb styles for WebKit browsers */
-&::-webkit-slider-thumb {
   -webkit-appearance: none;
-  appearance: none;
-  width: 25px;
-  height: 25px;
-  margin-top: 0px;
-  background: white;
-  border:0.2rem solid black;
+  width: 100%;
+  height: 40px;
+  background: #ddd;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0s;
+  // transition: opacity 0.2s;
   cursor: pointer;
-  border-radius: 50%;
-  margin-bottom: 5px;
-}
+  margin-bottom: 0.1rem;
 
-/* Thumb styles for Firefox */
-&::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  background: #4caf50;
-  cursor: pointer;
-  border-radius: 50%;
-  margin-top: -5px;
-}
+  /* Thumb styles */
+  /* Thumb styles for WebKit browsers */
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    margin-top: 0px;
+    background: white;
+    border: 0.2rem solid black;
+    cursor: pointer;
+    border-radius: 50%;
+    margin-bottom: 5px;
+  }
 
-/* Thumb styles for Edge */
-&::-ms-thumb {
-  width: 25px;
-  height: 25px;
-  background: #4caf50;
-  cursor: pointer;
-  border-radius: 50%;
-  margin-top: -5px;
-}
+  /* Thumb styles for Firefox */
+  &::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #4caf50;
+    cursor: pointer;
+    border-radius: 50%;
+    margin-top: -5px;
+  }
 
+  /* Thumb styles for Edge */
+  &::-ms-thumb {
+    width: 25px;
+    height: 25px;
+    background: #4caf50;
+    cursor: pointer;
+    border-radius: 50%;
+    margin-top: -5px;
+  }
 
-/* Track styles */
-&::-webkit-slider-runnable-track {
-  height: 20px;
-  border-radius: 5px;
-  background: linear-gradient(to right, blue 0%, blue ${(props) =>
-    props.sliderPercentage}, #ddd ${(props) =>
-  props.sliderPercentage}, #ddd 100%);
- 
-}
+  /* Track styles */
+  &::-webkit-slider-runnable-track {
+    height: 20px;
+    border-radius: 5px;
+    background: linear-gradient(
+      to right,
+      blue 0%,
+      blue ${(props) => props.sliderPercentage},
+      #ddd ${(props) => props.sliderPercentage},
+      #ddd 100%
+    );
+  }
 
-&::-moz-range-track {
-  height: 20px;
-  border-radius: 5px;
-  background: linear-gradient(to right, blue 0%, blue ${(props) =>
-    props.sliderPercentage}, #ddd ${(props) =>
-  props.sliderPercentage}, #ddd 100%);
-}
+  &::-moz-range-track {
+    height: 20px;
+    border-radius: 5px;
+    background: linear-gradient(
+      to right,
+      blue 0%,
+      blue ${(props) => props.sliderPercentage},
+      #ddd ${(props) => props.sliderPercentage},
+      #ddd 100%
+    );
+  }
   &::-webkit-slider-runnable-track {
     height: 25px;
     border-radius: 5px;
-    background: linear-gradient(to right, blue 0%, blue ${(props) =>
-      props.sliderPercentage}, #ddd ${(props) =>
-    props.sliderPercentage}, #ddd 100%);
-   
+    background: linear-gradient(
+      to right,
+      blue 0%,
+      blue ${(props) => props.sliderPercentage},
+      #ddd ${(props) => props.sliderPercentage},
+      #ddd 100%
+    );
   }
   height: 30px;
-  
 `;
 
 const SliderValues = styled.div`
@@ -436,41 +464,49 @@ function GapTimer(props) {
             </>
           )}
         </TimerContainer>
-        <ControlBox>
-          <ControlPannel
-            onClick={() => {
-              if (showSetting == false) {
-                props.resetTimer();
-              }
-            }}
-          >
-            <ControlPannelPng src={redo} alt="redo" />
-          </ControlPannel>
-          <ControlPannel
-            onClick={() => {
-              if (showSetting == false) {
-                props.toogleTimer();
-              }
-            }}
-          >
-            {props.isRunning ? (
-              <ControlPannelPng src={pauseButton} alt="play" />
-            ) : (
-              <ControlPannelPng src={playButton} alt="pause" />
-            )}
-          </ControlPannel>
-          <ControlPannel
-            onClick={() => {
-              {
-                setShowSetting(!showSetting);
-                props.resetTimer();
-              }
-            }}
-          >
-            <ControlPannelPng src={setting} alt="setting" />
-          </ControlPannel>
-        </ControlBox>
-        <div style={{height:"100vh", padding: "0px 20px 10px 20px", gap:"0px"}}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <ControlBox >
+            <ControlPannel
+            style={{borderTopLeftRadius:"33px", borderBottomLeftRadius:"33px"}}
+              onClick={() => {
+                if (showSetting == false) {
+                  props.resetTimer();
+                }
+              }}
+            >
+              <ControlPannelPng  src={redo} alt="redo" />
+            </ControlPannel>
+            <ControlPannel
+              className="btn"
+              onClick={() => {
+                if (showSetting == false) {
+                  props.toogleTimer();
+                }
+              }}
+            >
+              {props.isRunning ? (
+                <ControlPannelPng src={pauseButton} alt="play" />
+              ) : (
+                <ControlPannelPng src={playButton} alt="pause" />
+              )}
+            </ControlPannel>
+            <ControlPannel
+            style={{borderTopRightRadius:"33px", borderBottomRightRadius:"33px"}}
+              onClick={() => {
+                {
+                  setShowSetting(!showSetting);
+                  props.resetTimer();
+                }
+              }}
+            >
+              <ControlPannelPng src={setting} alt="setting" />
+            </ControlPannel>
+          </ControlBox>
+        </div>
+
+        <div
+          style={{ height: "100vh", padding: "0px 20px 10px 20px", gap: "0px" }}
+        >
           <GapInfoPage />
         </div>
       </Container>

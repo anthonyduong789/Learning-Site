@@ -84,7 +84,7 @@ function App() {
     <>
     
       <div className="App">
-      <audio ref={audioRef} src={beepSound}/>
+      <audio ref={audioRef} src={beepSound} preload="metadata"/>
       {/* <audio ref={audioRef} controls>
         <source src={beepSound} type="audio/mpeg" />
         Your browser does not support the audio element.
