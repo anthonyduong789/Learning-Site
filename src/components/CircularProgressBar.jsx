@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 
-const CircularProgressBar = ({ savedTimeLeft, timerLeft }) => {
+const CircularProgressBar = ({ savedTimeLeft, timerLeft,savedTimePause, timePause, timeNextRest}) => {
   const [radius, setRadius] = React.useState(250);
+  const [showPauseTimer, setShowPauseTimer] = React.useState(false);
   const stroke = 8; // Thickness of the progress bar
-  const normalizedRadius = radius - stroke * 0.8;
+  const normalizedRadius = radius - stroke * 1;
   const circumference = normalizedRadius * 2 * Math.PI;
   const progressPercentage = timerLeft / savedTimeLeft;
 
@@ -13,6 +14,7 @@ const CircularProgressBar = ({ savedTimeLeft, timerLeft }) => {
     const newRadius = window.innerHeight * 0.2;
     setRadius(newRadius);
   };
+
 
   useEffect(() => {
     // Update the radius when the component mounts
@@ -31,7 +33,7 @@ const CircularProgressBar = ({ savedTimeLeft, timerLeft }) => {
   const strokeDashoffset = circumference - progressPercentage * circumference;
 
   // Calculate the position of the progress circle
-  const progressCircleRadius = 10; // Radius of the progress circle
+  const progressCircleRadius = 8; // Radius of the progress circle
   const angle = 2 * Math.PI * progressPercentage + Math.PI / 2;
   const progressCircleX =
     radius + normalizedRadius * Math.cos(angle - Math.PI / 2);
@@ -48,13 +50,29 @@ const CircularProgressBar = ({ savedTimeLeft, timerLeft }) => {
 
     return `${minutes}:${seconds}`;
   };
+  
 
+  const showPause = () => {
+    if(timeNextRest == 0 && timePause>0){
+        return formatTime(timePause);
+    }else{
+        return formatTime(timerLeft);
+    }
+  }
+
+  const showHeader = () => {
+    if(timeNextRest == 0 && timePause>0){
+        return "Pause";
+    }else{
+        return "Work";
+    }
+  }
   return (
-    <div style={{ width: "100%", height: "100%", display:"flex", alignContent:"center", justifyContent:"center"}}>
+    <div style={{ width: "100%", height: "100%", display:"flex", alignContent:"center", justifyContent:"center",}}>
       <svg viewBox={`0 0 ${radius * 2} ${radius * 2}`}>
         <circle
           stroke="blue"
-          fill="transparent"
+        fill={timeNextRest === 0 && timePause > 0 ? "#FDF7E4" : "transparent"}
           strokeWidth={stroke}
           r={normalizedRadius}
           cx={radius}
@@ -77,6 +95,11 @@ const CircularProgressBar = ({ savedTimeLeft, timerLeft }) => {
           cx={progressCircleX}
           cy={progressCircleY}
         />
+        <text  x="50%"
+            y="30%"
+            textAnchor="middle"
+            dy=".3em"
+            fontSize={radius / 4}>{showHeader()}</text>
         <text
           x="50%"
           y="50%"
@@ -84,7 +107,7 @@ const CircularProgressBar = ({ savedTimeLeft, timerLeft }) => {
           dy=".3em"
           fontSize={radius / 2.3}
         >
-          {`${formatTime(timerLeft)}`}
+          {showPause()}
         </text>
       </svg>
     </div>
@@ -92,3 +115,5 @@ const CircularProgressBar = ({ savedTimeLeft, timerLeft }) => {
 };
 
 export default CircularProgressBar;
+
+

@@ -42,7 +42,7 @@ const InfoIcon = styled.img`
 const TimerContainer = styled.div`
   width: 100%;
   height: 100%;
-  max-height: 60vh;
+  max-height: 25rem;
   // height: 60vh;
   // background: #ffeaea;
   border-radius: 29px;
@@ -50,7 +50,7 @@ const TimerContainer = styled.div`
   // padding-bottom: 0.5rem;
   @media (max-width: 768px) {
     height: 100%;
-    max-height: 50vh;
+    max-height: 25rem;
   }
 `;
 
@@ -106,12 +106,12 @@ const PauseText = styled.h1`
 const ControlBox = styled.div`
   width: 100%;
   // background: #ffeaea;
-  height: 100px;
+  // height: 100px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   // margin-top: 2rem;
-  gap: 8rem;
+  gap: 4rem;
   @media (max-width: 768px) {
     margin-top: 2rem;
     gap: 3rem;
@@ -119,7 +119,7 @@ const ControlBox = styled.div`
 `;
 
 const ControlPannel = styled.div`
-  height: 100px;
+  // height: 100px;
 `;
 
 const ControlPannelPng = styled.img`
@@ -133,12 +133,12 @@ const ControlPannelPng = styled.img`
 const Sliders = styled.input`
 -webkit-appearance: none;
 width: 100%;
-height: 10px;
+height: 40px;
 background: #ddd;
 outline: none;
 opacity: 0.7;
--webkit-transition: 0.2s;
-transition: opacity 0.2s;
+-webkit-transition: 0s;
+// transition: opacity 0.2s;
 cursor: pointer;
 margin-bottom: 0.1rem;
 
@@ -149,7 +149,7 @@ margin-bottom: 0.1rem;
   appearance: none;
   width: 25px;
   height: 25px;
-  margin-top: -5px;
+  margin-top: 0px;
   background: white;
   border:0.2rem solid black;
   cursor: pointer;
@@ -180,7 +180,7 @@ margin-bottom: 0.1rem;
 
 /* Track styles */
 &::-webkit-slider-runnable-track {
-  height: 10px;
+  height: 20px;
   border-radius: 5px;
   background: linear-gradient(to right, blue 0%, blue ${(props) =>
     props.sliderPercentage}, #ddd ${(props) =>
@@ -195,8 +195,15 @@ margin-bottom: 0.1rem;
     props.sliderPercentage}, #ddd ${(props) =>
   props.sliderPercentage}, #ddd 100%);
 }
-@media (max-width: 768px) {
-  height: 10px;
+  &::-webkit-slider-runnable-track {
+    height: 25px;
+    border-radius: 5px;
+    background: linear-gradient(to right, blue 0%, blue ${(props) =>
+      props.sliderPercentage}, #ddd ${(props) =>
+    props.sliderPercentage}, #ddd 100%);
+   
+  }
+  height: 30px;
   
 `;
 
@@ -242,6 +249,11 @@ function GapTimer(props) {
     setSliderPercentageTotal(`${percentage}%`);
   };
 
+  const handleSliderChangeEnd = (e) => {
+    // setSliderValue(e.target.value);
+    props.setSavedTimeLeft(e.target.value);
+  };
+
   const handleSliderChangeNextRest = (event) => {
     const newValue = event.target.value;
     props.setSavedTimeNextRest(newValue);
@@ -270,7 +282,6 @@ function GapTimer(props) {
         {" "}
         <div
           style={{
-           
             padding: "30px",
             display: "flex",
             height: "80%",
@@ -287,69 +298,102 @@ function GapTimer(props) {
               max="5400"
               step="600"
               value={props.savedTimeLeft}
+              // defaultValuev={props.savedTimeLeft}
               onChange={handleSliderChangeTotal}
+              // onMouseUp={handleSliderChangeEnd}
               sliderPercentage={sliderPercentageTotal}
             />
             <SliderValues>
-              <Value>{"10"}<br/>{"min"}</Value>
-              <Value>{"20"}<br/>{"min"}</Value>
-              <Value>{"30"}<br/>{"min"}</Value>
-              <Value>{"40"}<br/>{"min"}</Value>
-              <Value>{"50"}<br/>{"min"}</Value>
-              <Value>{"60"}<br/>{"min"}</Value>
-              <Value>{"70"}<br/>{"min"}</Value>
-              <Value>{"80"}<br/>{"min"}</Value>
-              <Value>{"90"}<br/>{"min"}</Value>
-           
+              <Value>
+                {"10"}
+                <br />
+                {"min"}
+              </Value>
+              <Value>
+                {"20"}
+                <br />
+                {"min"}
+              </Value>
+              <Value>
+                {"30"}
+                <br />
+                {"min"}
+              </Value>
+              <Value>
+                {"40"}
+                <br />
+                {"min"}
+              </Value>
+              <Value>
+                {"50"}
+                <br />
+                {"min"}
+              </Value>
+              <Value>
+                {"60"}
+                <br />
+                {"min"}
+              </Value>
+              <Value>
+                {"70"}
+                <br />
+                {"min"}
+              </Value>
+              <Value>
+                {"80"}
+                <br />
+                {"min"}
+              </Value>
+              <Value>
+                {"90"}
+                <br />
+                {"min"}
+              </Value>
             </SliderValues>
           </div>
 
-          <div style={{width:"100%", marginTop:"5%"}}>
-          <Sliders
-            type="range"
-            min="60"
-            max="300"
-            step="60"
-            value={props.savedTimeNextRest}
-            onChange={handleSliderChangeNextRest}
-            sliderPercentage={sliderPercentageNextRest}
-          />
-          <SliderValues>
-            <Value>1 min</Value>
-            <Value>2 min</Value>
-            <Value>3 min</Value>
-            <Value>4 min</Value>
-            <Value>5 min</Value> 
-          </SliderValues> 
+          <div style={{ width: "100%", marginTop: "5%" }}>
+            <Sliders
+              type="range"
+              min="60"
+              max="300"
+              step="60"
+              value={props.savedTimeNextRest}
+              onChange={handleSliderChangeNextRest} //handleSliderChangeNextRest}
+              sliderPercentage={sliderPercentageNextRest}
+            />
+            <SliderValues>
+              <Value>1 min</Value>
+              <Value>2 min</Value>
+              <Value>3 min</Value>
+              <Value>4 min</Value>
+              <Value>5 min</Value>
+            </SliderValues>
           </div>
 
-       
-          <div style={{width:"100%", marginTop:"5%"}}>
-          <Sliders
-            type="range"
-            min="5"
-            max="25"
-            step="5"
-            value={props.savedTimePause}
-            onChange={handleSliderChangePause}
-            sliderPercentage={sliderPercentagePause}
-          />
-          <SliderValues>
-            <Value>5 sec</Value>
-            <Value>10 sec</Value>
-            <Value>15 sec</Value>
-            <Value>20 sec</Value>
-            <Value>25 sec</Value>
-          </SliderValues>
+          <div style={{ width: "100%", marginTop: "5%" }}>
+            <Sliders
+              type="range"
+              min="5"
+              max="25"
+              step="5"
+              value={props.savedTimePause}
+              onChange={handleSliderChangePause}
+              sliderPercentage={sliderPercentagePause}
+            />
+            <SliderValues>
+              <Value>5 sec</Value>
+              <Value>10 sec</Value>
+              <Value>15 sec</Value>
+              <Value>20 sec</Value>
+              <Value>25 sec</Value>
+            </SliderValues>
           </div>
-
-       
         </div>
       </>
     );
   };
 
-  
   // write me a function that when given seconds, returns a string in the format of mm:ss
   // 1 -> 01:00
   // 60 -> 01:00
@@ -364,7 +408,7 @@ function GapTimer(props) {
     }
 
     return `${minutes}:${seconds}`;
-  }
+  };
 
   return (
     <>
@@ -382,10 +426,13 @@ function GapTimer(props) {
             <SettingContainer />
           ) : (
             <>
-              
               <CircularProgressBar
                 savedTimeLeft={props.savedTimeLeft}
-                timerLeft={props.timerLeft} />
+                timerLeft={props.timerLeft}
+                savedTimePause={props.savedTimePause}
+                timePause={props.timePause}
+                timeNextRest={props.timeNextRest}
+              />
             </>
           )}
         </TimerContainer>
@@ -423,7 +470,9 @@ function GapTimer(props) {
             <ControlPannelPng src={setting} alt="setting" />
           </ControlPannel>
         </ControlBox>
-        <GapInfoPage />
+        <div style={{height:"100vh", padding: "0px 20px 10px 20px", gap:"0px"}}>
+          <GapInfoPage />
+        </div>
       </Container>
     </>
   );
