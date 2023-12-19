@@ -7,6 +7,7 @@ import redo from "../assets/arrow-clockwise-fill.png";
 import setting from "../assets/sliders-horizontal-fill.png";
 import GapInfoPage from "./GapInfoPage";
 import RangeSlider from "./Sliders";
+import CircularProgressBar from "./CircularProgressBar";
 
 const Heading = styled.div`
   // background: #E9E8E8;
@@ -22,11 +23,11 @@ const Heading = styled.div`
 const HeadingText = styled.h1`
   color: black;
   text-decoration: none;
-  font-size: 3rem;
+  font-size: 2.5rem;
 
   margin: 1rem 0;
   @media (max-width: 768px) {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
   }
 `;
 
@@ -41,11 +42,12 @@ const InfoIcon = styled.img`
 const TimerContainer = styled.div`
   width: 100%;
   height: 100%;
-  height: 50vh;
+  max-height: 60vh;
+  // height: 60vh;
   // background: #ffeaea;
   border-radius: 29px;
   //    padding-left: 1rem;
-  padding-top: 1.5rem;
+  // padding-bottom: 0.5rem;
   @media (max-width: 768px) {
     height: 100%;
     max-height: 50vh;
@@ -57,7 +59,7 @@ const Container = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
-    margin: 0 2%;
+    margin: 0;
   }
 `;
 
@@ -108,7 +110,7 @@ const ControlBox = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 2rem;
+  // margin-top: 2rem;
   gap: 8rem;
   @media (max-width: 768px) {
     margin-top: 2rem;
@@ -131,15 +133,17 @@ const ControlPannelPng = styled.img`
 const Sliders = styled.input`
 -webkit-appearance: none;
 width: 100%;
-height: 20px;
+height: 10px;
 background: #ddd;
 outline: none;
 opacity: 0.7;
 -webkit-transition: 0.2s;
 transition: opacity 0.2s;
 cursor: pointer;
+margin-bottom: 0.1rem;
 
 /* Thumb styles */
+/* Thumb styles for WebKit browsers */
 &::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -147,26 +151,41 @@ cursor: pointer;
   height: 25px;
   margin-top: -5px;
   background: white;
-  border:1rem solid black;
+  border:0.2rem solid black;
   cursor: pointer;
   border-radius: 50%;
+  margin-bottom: 5px;
 }
 
+/* Thumb styles for Firefox */
 &::-moz-range-thumb {
   width: 25px;
   height: 25px;
   background: #4caf50;
   cursor: pointer;
   border-radius: 50%;
+  margin-top: -5px;
 }
+
+/* Thumb styles for Edge */
+&::-ms-thumb {
+  width: 25px;
+  height: 25px;
+  background: #4caf50;
+  cursor: pointer;
+  border-radius: 50%;
+  margin-top: -5px;
+}
+
 
 /* Track styles */
 &::-webkit-slider-runnable-track {
-  height: 20px;
+  height: 10px;
   border-radius: 5px;
   background: linear-gradient(to right, blue 0%, blue ${(props) =>
     props.sliderPercentage}, #ddd ${(props) =>
   props.sliderPercentage}, #ddd 100%);
+ 
 }
 
 &::-moz-range-track {
@@ -187,7 +206,10 @@ const SliderValues = styled.div`
   padding-top: 5px;
 `;
 const Value = styled.span`
-  font-size: 14px;
+  font-size: 24px;
+  @media (max-width: 768px) {
+    font-size: 17px;
+  }
 `;
 
 function GapTimer(props) {
@@ -248,12 +270,14 @@ function GapTimer(props) {
         {" "}
         <div
           style={{
+           
             padding: "30px",
             display: "flex",
+            height: "80%",
             flexDirection: "column",
-            alignItems: "center",
-            gap: "1rem",
-            justifyContent: "center",
+            // alignItems: "space-between",
+            // gap: "1rem",
+            justifyContent: "space-evenly",
           }}
         >
           <div style={{ width: "100%" }}>
@@ -267,15 +291,16 @@ function GapTimer(props) {
               sliderPercentage={sliderPercentageTotal}
             />
             <SliderValues>
-              <Value>10 min</Value>
-              <Value>20 min</Value>
-              <Value>30 min</Value>
-              <Value>40 min</Value>
-              <Value>50 min</Value>
-              <Value>60 min</Value>
-              <Value>70 min</Value>
-              <Value>80 min</Value>
-              <Value>90 min</Value>
+              <Value>{"10"}<br/>{"min"}</Value>
+              <Value>{"20"}<br/>{"min"}</Value>
+              <Value>{"30"}<br/>{"min"}</Value>
+              <Value>{"40"}<br/>{"min"}</Value>
+              <Value>{"50"}<br/>{"min"}</Value>
+              <Value>{"60"}<br/>{"min"}</Value>
+              <Value>{"70"}<br/>{"min"}</Value>
+              <Value>{"80"}<br/>{"min"}</Value>
+              <Value>{"90"}<br/>{"min"}</Value>
+           
             </SliderValues>
           </div>
 
@@ -351,22 +376,16 @@ function GapTimer(props) {
           </div>
         </Heading>
         <TimerContainer
-          style={{ backgroundColor: showSetting ? "#F0ECE5" : "#ffeaea" }}
+          style={{ backgroundColor: showSetting ? "#F0ECE5" : "transparent" }}
         >
           {showSetting ? (
             <SettingContainer />
           ) : (
             <>
-              {" "}
-              <TimeLeftContainer>
-                <TimeLeftText>Time Left: {formatTime(props.timerLeft)}</TimeLeftText>
-              </TimeLeftContainer>
-              <TimeLeftContainer>
-                <TimeLeftText>Next Rest:{formatTime(props.timeNextRest)}</TimeLeftText>
-              </TimeLeftContainer>
-              <PauseContainer>
-                <PauseText>Pause:{(props.timePause)}</PauseText>
-              </PauseContainer>
+              
+              <CircularProgressBar
+                savedTimeLeft={props.savedTimeLeft}
+                timerLeft={props.timerLeft} />
             </>
           )}
         </TimerContainer>

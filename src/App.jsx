@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./App.css";
 import ResponsiveNavbar from "./components/ResponsiveNavbar";
 import GapTimer from "./components/GapTimer";
+import beepSound from "./assets/beep-06.mp3";
 
 function App() {
   //handles the logic for the settings
@@ -15,23 +16,47 @@ function App() {
   const [timePause, setTimePause] = useState(savedTimePause);
   const [isRunning, setIsRunning] = useState(false);
 
-  //handles the logic for the settings
+  //playing audio
+  const audioRef = useRef()  
+
+  const playAudio = () => {
+    audioRef.current.play();
+    setTimeout(() => {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }, 1400);
+  };
+
+  //handles the logic for the random value
+  function generateRandomValue(maxValue) {
+    const minValue = 0;
+    if (maxValue < minValue) {
+      throw new Error("Max value must be greater than 60");
+    }
+    return Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
+  }
 
 
+  //logic for running the timer
   useEffect(() => {
     let interval = null;
     if (isRunning) {
       interval = setInterval(() => {
         if (timerLeft == 0) {
           setIsRunning(false);
+          playAudio();
           resetTimer();
         } else if (timeNextRest == 0 && timePause > 0) {
+          if (timePause == savedTimePause) {
+            playAudio();
+          }
           setTimerleft(timerLeft - 1);
           setTimePause(timePause - 1);
         } else if (timePause == 0) {
-          setTimerNextRest(savedTimeNextRest - 1);
+          setTimerNextRest(generateRandomValue(savedTimeNextRest) - 1);
           setTimePause(savedTimePause);
           setTimerleft(timerLeft - 1);
+          playAudio();
           // setTimerNextRest(timeNextRest-1);
         } else if (timeNextRest > 0) {
           setTimerleft(timerLeft - 1);
@@ -50,14 +75,20 @@ function App() {
 
   const resetTimer = () => {
     setTimerleft(savedTimeLeft);
-    setTimerNextRest(savedTimeNextRest);
+    setTimerNextRest(generateRandomValue(savedTimeNextRest));
     setTimePause(savedTimePause);
     setIsRunning(false);
   };
 
   return (
     <>
+    
       <div className="App">
+      <audio ref={audioRef} src={beepSound}/>
+      {/* <audio ref={audioRef} controls>
+        <source src={beepSound} type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio> */}
         <ResponsiveNavbar />
         <div className="GapDiv">
           <GapTimer
@@ -67,11 +98,9 @@ function App() {
             timePause={timePause}
             resetTimer={resetTimer}
             isRunning={isRunning}
-
             setSavedTimeLeft={setSavedTimeLeft}
             setSavedTimeNextRest={setSavedTimeNextRest}
             setSavedTimePause={setSavedTimePause}
-
             savedTimeLeft={savedTimeLeft}
             savedTimeNextRest={savedTimeNextRest}
             savedTimePause={savedTimePause}
