@@ -7,7 +7,7 @@ const InfoHeader = styled.h1`
     font-weight: 550;
     text-decoration: underline;
     text-align: center;
-    margin-top: 20vh;
+    margin-top: 5vh;
     margin-bottom: 0rem;
     padding-bottom: 0rem
 `;
@@ -32,6 +32,17 @@ function GapInfoPage() {
         this appllication is a simple, easy-to-use tool that allows users to
         customize their practice sessions with random pauses.
       </InfoText>
+      <div style={{display:"flex", justifyContent:"center"}}>
+      <iframe
+        
+        src="https://www.youtube.com/embed/yKMvJiQldMQ?si=N9lT7OEhJmTo2gtp"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+      </div>
+     
     </>
   );
 }

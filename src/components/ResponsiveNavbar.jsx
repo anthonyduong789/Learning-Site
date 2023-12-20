@@ -35,6 +35,7 @@ const NavLink = styled.a`
   color: black;
   text-decoration: none;
   padding: 10px 15px;
+  font-size: 1.5em;
   transition: background 0.3s;
   &:hover {
     background: #ddd;
@@ -75,9 +76,7 @@ const ResponsiveNavbar = () => {
       </ToggleButton>
       <NavItems isOpen={isOpen}>
         <NavLink href="#home" onClick={toggleNav}>Gap Timer</NavLink>
-        <NavLink href="#news" onClick={toggleNav}>News</NavLink>
-        <NavLink href="#contact" onClick={toggleNav}>Contact</NavLink>
-        <NavLink href="#about" onClick={toggleNav}>About</NavLink>
+        <NavLink href="#about" onClick={toggleNav}>40 hz Binural Beats</NavLink>
       </NavItems>
     </Nav>
   );

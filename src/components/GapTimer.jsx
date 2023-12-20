@@ -56,7 +56,7 @@ const TimerContainer = styled.div`
 
 const Container = styled.div`
   width: 600px;
-
+  padding-bottom: 10vh; 
   @media (max-width: 768px) {
     width: 100%;
     margin: 0;
@@ -107,13 +107,13 @@ const ControlBox = styled.div`
   width: 70%;
   display: flex;
   flex-direction: row;
-  height: 100px;
+  height: 80px;
   width: 300px;
   border-radius: 33px;
   justify-content: space-between;
   // border: 0.2rem solid black;
   // align-items: center
-  margin-top: 1rem;
+  margin-top: 0.4rem;
   @media (max-width: 768px) {
     margin-top: 2rem;
     // gap: 3rem;
