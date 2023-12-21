@@ -22,7 +22,7 @@ const InfoText = styled.p`
 function GapInfoPage() {
   return (
     <>
-      <InfoHeader>Use of this timer</InfoHeader>
+      {/* <InfoHeader>Use of this timer</InfoHeader> */}
       <InfoText>
         Whether mastering an instrument or a new language, scientific studies
         have shown that incorporating random 10-second pauses into practice

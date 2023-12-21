@@ -21,6 +21,9 @@ function App() {
 
   //playing audio
   const audioRef = useRef()  
+  useEffect(() => {
+    audioRef.current.volume = 0.7;
+  }, []);
 
   const playAudio = () => {
     audioRef.current.play();
