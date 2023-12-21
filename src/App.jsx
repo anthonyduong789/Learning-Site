@@ -5,6 +5,8 @@ import GapTimer from "./components/GapTimer";
 import beepSound from "./assets/beep-06.mp3";
 import AudioPage from "./components/AudioPage";
 
+// notes to self AudioPage is being place at the GaptTimer component
+
 function App() {
   //handles the logic for the settings
   const [savedTimeLeft, setSavedTimeLeft] = useState(1800);
@@ -106,8 +108,14 @@ function App() {
             savedTimeNextRest={savedTimeNextRest}
             savedTimePause={savedTimePause}
           />
+          
         </div>
+        <div className="AudioPage">
         <AudioPage/>
+        </div>
+        
+        
+        
       </div>
     </>
   );
