@@ -1,18 +1,26 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import timer from '../assets/timer.png';
 
 const Nav = styled.nav`
   background: #E9E8E8;
+  position: fixed;
+
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  max-height: 45px;
+  justify-content: center;
   align-items: center;
+  z-index: 1000;
+  @media (max-width: 768px) {
+    justify-content: flex-end;
 `;
 
 const Logo = styled.a`
   color: black;
   text-decoration: none;
-  font-size: 1.5em;
+  font-size: 1.2em;
+  // max-height: 100px;
 `;
 
 const NavItems = styled.div`
@@ -23,7 +31,7 @@ const NavItems = styled.div`
     flex-direction: column;
     width: 100%;
     position: absolute;
-    top: 50px;
+    top: 35px;
     left: 0;
     background: #E9E8E8;
     transition: transform 0.3s ease-in-out;
@@ -35,11 +43,14 @@ const NavLink = styled.a`
   color: black;
   text-decoration: none;
   padding: 10px 15px;
-  font-size: 1.5em;
-  transition: background 0.3s;
+  font-size: 1.2em;
+  transition: background 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &:hover {
-    background: #ddd;
-    color: #333;
+    background: #F0ECE5;
+    color: red;
   }
   @media (max-width: 768px) {
     width: 100%;
@@ -54,15 +65,24 @@ const ToggleButton = styled.button`
   font-size: 2.5em;
   cursor: pointer;
   display: none;
+  float: right;
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+const ToggleButtonLabel = styled.span`
+  display: none;
+  margin-left: 9rem;
   @media (max-width: 768px) {
     display: block;
   }
 `;
 
 
-
 const ResponsiveNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [GapTimer, setGapTimer] = useState(false);
 
   const toggleNav = () => {
     setIsOpen(!isOpen);
@@ -70,12 +90,15 @@ const ResponsiveNavbar = () => {
 
   return (
     <Nav>
-      <Logo href="/">Logo</Logo>
+      
+      
       <ToggleButton onClick={toggleNav}>
         ☰
       </ToggleButton>
+      
+    
       <NavItems isOpen={isOpen}>
-        <NavLink href="#home" onClick={toggleNav}>Gap Timer</NavLink>
+        <NavLink href="#GapTimer" onClick={toggleNav}>Gap Timer<img style={{height: '30px'}} src={timer} alt="" /></NavLink>
         <NavLink href="#about" onClick={toggleNav}>40 hz Binural Beats</NavLink>
       </NavItems>
     </Nav>

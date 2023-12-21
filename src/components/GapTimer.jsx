@@ -21,11 +21,11 @@ const Heading = styled.div`
 `;
 
 const HeadingText = styled.h1`
-  color: black;
+  color: #67729D;
   text-decoration: none;
   font-size: 2.5rem;
-
-  margin: 1rem 0;
+  padding: 10px 0 0 0; 
+  margin: 0.3rem 0;
   @media (max-width: 768px) {
     font-size: 2.4rem;
   }
@@ -247,6 +247,19 @@ const Value = styled.span`
   }
 `;
 
+
+
+const handleSmoothScroll = (e) => {
+  e.preventDefault();
+  const href = e.currentTarget.getAttribute('href');
+  const offsetTop = document.querySelector(href).offsetTop;
+
+  window.scrollTo({
+    top: offsetTop,
+    behavior: "smooth"
+  });
+};
+
 function GapTimer(props) {
   const [play, setPlay] = useState(false);
   const [showSetting, setShowSetting] = useState(false);
@@ -309,6 +322,7 @@ function GapTimer(props) {
       <>
         {" "}
         <div
+          
           style={{
             padding: "30px",
             display: "flex",
@@ -444,7 +458,9 @@ function GapTimer(props) {
         <Heading>
           <HeadingText>Gap Learning Timer</HeadingText>
           <div onClick={goToInfo}>
-            <InfoIcon src={infoIcon} alt="info" j />
+            <a href="#info">
+              <InfoIcon src={infoIcon} alt="info" />
+            </a>
           </div>
         </Heading>
         <TimerContainer
@@ -504,7 +520,7 @@ function GapTimer(props) {
           </ControlBox>
         </div>
 
-        <div
+        <div id="info"
           style={{ height: "100vh", padding: "0px 20px 10px 20px", gap: "0px" }}
         >
           <GapInfoPage />

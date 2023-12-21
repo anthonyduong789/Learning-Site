@@ -19,7 +19,7 @@
 } */
 
 .GapDiv{
-  padding: 0;
+  padding-top: 35px;
   margin: 0;
   display: flex;
   justify-content: center;

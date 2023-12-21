@@ -3,6 +3,7 @@ import "./App.css";
 import ResponsiveNavbar from "./components/ResponsiveNavbar";
 import GapTimer from "./components/GapTimer";
 import beepSound from "./assets/beep-06.mp3";
+import AudioPage from "./components/AudioPage";
 
 function App() {
   //handles the logic for the settings
@@ -90,7 +91,7 @@ function App() {
         Your browser does not support the audio element.
       </audio> */}
         <ResponsiveNavbar />
-        <div className="GapDiv">
+        <div id="GapTimer" className="GapDiv">
           <GapTimer
             timerLeft={timerLeft}
             timeNextRest={timeNextRest}
@@ -106,6 +107,7 @@ function App() {
             savedTimePause={savedTimePause}
           />
         </div>
+        <AudioPage/>
       </div>
     </>
   );
