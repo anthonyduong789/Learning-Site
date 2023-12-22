@@ -521,7 +521,7 @@ function GapTimer(props) {
         </div>
 
         <div id="info"
-          style={{ height: "100vh", marginTop:"2rem", padding: "10px 20px 0px 20px", gap: "0px" }}
+          style={{marginBottom:"8vh", marginTop:"2rem", padding: "10px 20px 0px 20px", gap: "0px" }}
         >
           <GapInfoPage />
         </div>

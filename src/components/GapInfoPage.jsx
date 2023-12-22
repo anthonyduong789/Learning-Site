@@ -15,7 +15,7 @@ const InfoHeader = styled.h1`
 const InfoText = styled.p`
   color: black;
   font-size: 1.5rem;
-  margin-top: 0rem;
+  margin-top: 3vh;
   padding-top: 0rem;
 `;
 
@@ -32,7 +32,7 @@ function GapInfoPage() {
         this appllication is a simple, easy-to-use tool that allows users to
         customize their practice sessions with random pauses.
       </InfoText>
-      <div style={{display:"flex", justifyContent:"center"}}>
+      <div style={{display:"flex", justifyContent:"center", marginTop:"5vh",}}>
       <iframe
         
         src="https://www.youtube.com/embed/yKMvJiQldMQ?si=N9lT7OEhJmTo2gtp"

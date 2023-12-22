@@ -2,7 +2,7 @@
   display: flex;
   margin-top: 1rem; /* This corresponds to mt-4 in Tailwind */
   min-height: 100vh; /* This makes sure your main element is at least as tall as the viewport */
-  /* flex-direction: column; */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: rgba(
@@ -11,6 +11,7 @@
     39,
     0.936
   ); /* Custom property for background, you should define it in your root */
+  padding-bottom: 30vh;
 }
 
 .card {
@@ -124,8 +125,9 @@
   display: flex;
   max-width: 700px;
   justify-content: center;
-
   align-items: center;
+  margin-top: 10vh;
+  
 }
 .fortyHzDescription {
   color: white;

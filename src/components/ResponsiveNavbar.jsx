@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import timer from '../assets/timer.png';
+import whiteNoiseIcon from '../assets/whiteNoiseIcon.png';
+import fortyHzIcon from '../assets/40HzIcon.png';
+
 
 const Nav = styled.nav`
   background: #E9E8E8;
@@ -98,8 +101,9 @@ const ResponsiveNavbar = () => {
       
     
       <NavItems isOpen={isOpen}>
-        <NavLink href="#GapTimer" onClick={toggleNav}>Gap Timer<img style={{height: '30px'}} src={timer} alt="" /></NavLink>
-        <NavLink href="#about" onClick={toggleNav}>40 hz Binural Beats</NavLink>
+        <NavLink href="#GapTimer" onClick={toggleNav}>Gap Timer<img style={{height: "var(--NavBarIconSize)"}} src={timer} alt="" /></NavLink>
+        <NavLink href="#fortyHz" onClick={toggleNav}>40 hz Binural Beats<img style={{height: "var(--NavBarIconSize)"}} src={fortyHzIcon} alt="" /></NavLink>
+        <NavLink href="#whiteNoise" onClick={toggleNav}>Low Level White Noise<img style={{height:"var(--NavBarIconSize)"}} src={whiteNoiseIcon}></img></NavLink>
       </NavItems>
     </Nav>
   );

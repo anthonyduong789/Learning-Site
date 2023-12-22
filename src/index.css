@@ -1,5 +1,6 @@
 :root {
     font-size: 16px;
+    --NavBarIconSize: 30px;
 }
 html {
     padding: 0;
@@ -12,3 +13,6 @@ body {
     padding: 0;
     margin: 0;
 }
+
+
+
