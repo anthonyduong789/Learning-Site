@@ -133,16 +133,8 @@ function AudioPage() {
           </div>
         </div>
         <p className="fortyHzDescription">
-          When you listen to two distinct tones, each with a slightly different
-          frequency, in each ear at the same time (using headphones), your brain
-          processes these tones and perceives an additional, separate tone.
-          <br></br>
-          <br></br> This phenomenon is known as Binaural Beats. Research from
-          2017 by Colzato suggests that a binaural beat with a frequency of 40
-          Hz is particularly effective at boosting concentration and cognitive
-          performance.<br></br>
-          <br></br>To get the best results, it's recommended to listen to this
-          tone for 30 minutes before starting any work or learning activities.
+        Binaural beats are created when you hear two slightly different frequencies in each ear using headphones.<br></br><br></br> Research from 2017 by Colzato found that a 40 Hz binaural beat can enhance concentration and cognitive performance.<br></br><br></br> For optimal results, listen to this beat for 30 minutes before work or learning.
+
         </p>
       </div>
       <audio ref={audioRef} id="audioPlayer" loop>
@@ -216,12 +208,11 @@ function AudioPage() {
           </div>
         </div>
         <p className="fortyHzDescription">
-          Low-level white noise can enhance learning and focus for some
-          individuals, as evidenced by a study. <br></br>
-          <br></br>This steady background sound helps minimize distractions and
-          maintain concentration by masking disruptive environmental noises.{" "}
-          <br></br>
-          <br></br>Its effectiveness, however, varies among individuals
+          Low-level white noise can enhance learning and focus
+          individuals, as evidenced by a study. 
+          <br></br><br></br>This steady background sound helps minimize distractions and
+          maintain concentration by masking disruptive environmental noises.
+        
         </p>
       </div>
       <audio ref={audioRef2} id="audioPlayer" loop>

@@ -51,6 +51,8 @@ const NavLink = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
+    font-family: "Roboto", sans-serif;
+
   &:hover {
     background: #F0ECE5;
     color: red;

@@ -17,6 +17,8 @@ const InfoText = styled.p`
   font-size: 1.5rem;
   margin-top: 3vh;
   padding-top: 0rem;
+  font-family: "Roboto", sans-serif;
+
 `;
 
 function GapInfoPage() {
@@ -29,7 +31,7 @@ function GapInfoPage() {
         sessions can significantly speed up the learning process.
         <br />
         <br />
-        this appllication is a simple, easy-to-use tool that allows users to
+        This appllication is a simple, easy-to-use tool that allows users to
         customize their practice sessions with random pauses.
       </InfoText>
       <div style={{display:"flex", justifyContent:"center", marginTop:"5vh",}}>

@@ -26,6 +26,8 @@ const HeadingText = styled.h1`
   font-size: 2.5rem;
   padding: 10px 0 0 0; 
   margin: 0.3rem 0;
+  font-family: "Roboto", sans-serif;
+
   @media (max-width: 768px) {
     font-size: 2.4rem;
   }
